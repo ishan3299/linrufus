@@ -1,8 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="refresh" content="0; url=https://rufus.ie">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinRufus - The Reliable USB Formatting Utility for Linux</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background-color: #333; color: white; padding: 20px 0; text-align: center; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { margin: 0; }
+        .btn { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+        .btn:hover { background-color: #0056b3; }
+        code { background: #eee; padding: 2px 5px; border-radius: 3px; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>LinRufus</h1>
+        <p>The Linux Port of the Popular Rufus Utility</p>
+    </header>
+    <div class="container">
+        <h2>What is LinRufus?</h2>
+        <p>LinRufus is a Linux-native CLI tool created to bring the reliability and features of Rufus to the Linux ecosystem. It allows you to create bootable USB drives from ISO images with ease, including full support for **Windows 10/11 ISOs** (splitting large WIM files automatically) and standard Linux Hybrid ISOs.</p>
+
+        <h2>Features</h2>
+        <ul>
+            <li><strong>Cli-Native</strong>: Fast and scriptable.</li>
+            <li><strong>Windows Support</strong>: Automatically handles split-WIM for Windows 10/11 UEFI boot.</li>
+            <li><strong>Safety</strong>: Built-in safety checks to protect your data.</li>
+            <li><strong>Debian Ready</strong>: Easy installation via `.deb`.</li>
+        </ul>
+
+        <h2>Installation</h2>
+        <pre><code>wget https://github.com/ishan3299/linrufus/releases/download/v0.1.1/linrufus_0.1.1-1_amd64.deb
+sudo dpkg -i linrufus_0.1.1-1_amd64.deb</code></pre>
+
+        <h2>Usage</h2>
+        <pre><code># List devices
+sudo linrufus --list
+
+# Write an ISO (Linux or Windows)
+sudo linrufus --device /dev/sdX --image /path/to/image.iso</code></pre>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="https://github.com/ishan3299/linrufus" class="btn">View on GitHub</a>
+            <a href="https://github.com/ishan3299/linrufus/releases" class="btn">Download Releases</a>
+        </div>
+    </div>
+    <footer style="text-align: center; padding: 20px; color: #777;">
+        <p>LinRufus is a fork of <a href="https://rufus.ie">Rufus</a> by Pete Batard. <br> Maintained by Ishan Patel.</p>
+    </footer>
 </body>
 </html>
