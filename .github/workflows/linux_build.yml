@@ -1,0 +1,31 @@
+name: LinRufus CI
+
+on:
+  push:
+    branches: [ linrufus-dev, master ]
+  pull_request:
+    branches: [ linrufus-dev, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libudev-dev debhelper devscripts build-essential dpkg-dev wimtools dosfstools parted rsync
+
+    - name: Build Binary
+      run: make
+
+    - name: Build Debian Package
+      run: dpkg-buildpackage -us -uc
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: linrufus-deb
+        path: ../linrufus_*.deb
