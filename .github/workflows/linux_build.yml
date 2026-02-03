@@ -24,8 +24,15 @@ jobs:
     - name: Build Debian Package
       run: dpkg-buildpackage -us -uc
 
+    - name: Move Artifacts to Workspace
+      run: |
+        mkdir -p build-artifacts
+        mv ../linrufus_*.deb build-artifacts/
+        mv ../linrufus_*.changes build-artifacts/
+        mv ../linrufus_*.buildinfo build-artifacts/
+
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: linrufus-deb
-        path: ../linrufus_*.deb
+        path: build-artifacts/
