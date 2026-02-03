@@ -1,0 +1,15 @@
+Source: linrufus
+Section: utils
+Priority: optional
+Maintainer: Ishan Patel <ishan.patel1998@gmail.com>
+Build-Depends: debhelper (>= 11), libudev-dev
+Standards-Version: 4.1.3
+Homepage: https://github.com/ishan3299/linrufus
+
+Package: linrufus
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Linux-native Rufus USB formatting utility
+ LinRufus is a Linux port of the popular Rufus utility.
+ It allows users to create bootable USB drives from ISO images
+ using a simple command-line interface.
