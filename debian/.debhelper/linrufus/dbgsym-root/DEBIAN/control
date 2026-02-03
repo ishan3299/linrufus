@@ -1,0 +1,13 @@
+Package: linrufus-dbgsym
+Package-Type: ddeb
+Source: linrufus
+Version: 0.1.1-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Ishan Patel <ishan.patel1998@gmail.com>
+Installed-Size: 34
+Depends: linrufus (= 0.1.1-1)
+Section: debug
+Priority: optional
+Description: debug symbols for linrufus
+Build-Ids: b3e55f77b0efa05fc722a97a2b9695917aa7c8ef

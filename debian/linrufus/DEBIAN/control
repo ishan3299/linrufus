@@ -1,0 +1,13 @@
+Package: linrufus
+Version: 0.1.1-1
+Architecture: amd64
+Maintainer: Ishan Patel <ishan.patel1998@gmail.com>
+Installed-Size: 31
+Depends: libc6 (>= 2.34), libudev1 (>= 183), wimtools, dosfstools, parted, rsync, coreutils
+Section: utils
+Priority: optional
+Homepage: https://github.com/ishan3299/linrufus
+Description: Linux-native Rufus USB formatting utility
+ LinRufus is a Linux port of the popular Rufus utility.
+ It allows users to create bootable USB drives from ISO images
+ using a simple command-line interface.
