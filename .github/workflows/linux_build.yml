@@ -25,7 +25,7 @@ jobs:
       run: dpkg-buildpackage -us -uc
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linrufus-deb
         path: ../linrufus_*.deb

@@ -37,10 +37,15 @@ linrufus --list
 sudo linrufus --device /dev/sdb --image ./ubuntu.iso
 ```
 
-## Attribution
-This project is based on [Rufus](https://github.com/pbatard/rufus) by Pete Batard.
-Copyright © 2011-2024 Pete Batard <pete@akeo.ie>
-LinRufus modifications Copyright © 2024 Ishan Patel <ishan.patel1998@gmail.com>
+## Attribution & License
+LinRufus is a Linux-native fork/port based on the [Rufus](https://github.com/pbatard/rufus) project by Pete Batard.
+
+**Copyright**:
+- Original Rufus code: Copyright © 2011-2024 Pete Batard <pete@akeo.ie>
+- LinRufus modifications: Copyright © 2024-2026 Ishan Patel <ishan.patel1998@gmail.com>
+
+Licensed under **GPLv3**. You are free to copy, distribute, and modify this software under the terms of the GNU General Public License version 3.
+See [LICENSE](LICENSE) for the full license text.
 
 ## License
 GPLv3 - See [LICENSE](LICENSE) for details.
