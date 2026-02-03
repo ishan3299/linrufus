@@ -1,55 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinRufus - The Reliable USB Formatting Utility for Linux</title>
+    <title>LinRufus - Bootable USB Creator for Linux</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        header { background-color: #333; color: white; padding: 20px 0; text-align: center; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1 { margin: 0; }
-        .btn { display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px; }
-        .btn:hover { background-color: #0056b3; }
-        code { background: #eee; padding: 2px 5px; border-radius: 3px; }
-        pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.8);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --accent-green: #22c55e;
+            --accent-orange: #f97316;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 28px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Code Section */
+        .code-section {
+            padding: 60px 0;
+        }
+
+        .code-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+        }
+
+        .code-blocks {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+
+        .code-block {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .code-dot.red {
+            background: #ef4444;
+        }
+
+        .code-dot.yellow {
+            background: #eab308;
+        }
+
+        .code-dot.green {
+            background: #22c55e;
+        }
+
+        .code-content {
+            padding: 20px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        .code-content .comment {
+            color: #64748b;
+        }
+
+        .code-content .command {
+            color: #22c55e;
+        }
+
+        .code-content .flag {
+            color: #f97316;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .code-blocks {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <header>
-        <h1>LinRufus</h1>
-        <p>The Linux Port of the Popular Rufus Utility</p>
-    </header>
     <div class="container">
-        <h2>What is LinRufus?</h2>
-        <p>LinRufus is a Linux-native CLI tool created to bring the reliability and features of Rufus to the Linux ecosystem. It allows you to create bootable USB drives from ISO images with ease, including full support for **Windows 10/11 ISOs** (splitting large WIM files automatically) and standard Linux Hybrid ISOs.</p>
+        <section class="hero">
+            <span class="hero-badge">🐧 Linux Native</span>
+            <h1>LinRufus</h1>
+            <p>Create bootable USB drives from any ISO — including Windows 10/11 — directly from your Linux terminal.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://github.com/ishan3299/linrufus/releases" class="btn btn-primary">
+                    ⬇️ Download .deb
+                </a>
+                <a href="https://github.com/ishan3299/linrufus" class="btn btn-secondary">
+                    📂 View Source
+                </a>
+            </div>
+        </section>
 
-        <h2>Features</h2>
-        <ul>
-            <li><strong>Cli-Native</strong>: Fast and scriptable.</li>
-            <li><strong>Windows Support</strong>: Automatically handles split-WIM for Windows 10/11 UEFI boot.</li>
-            <li><strong>Safety</strong>: Built-in safety checks to protect your data.</li>
-            <li><strong>Debian Ready</strong>: Easy installation via `.deb`.</li>
-        </ul>
+        <section class="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🪟</div>
+                    <h3>Windows ISO Support</h3>
+                    <p>Automatically splits large install.wim files using wimlib for perfect UEFI compatibility on
+                        FAT32.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Fast & Efficient</h3>
+                    <p>Uses rsync for intelligent file copying with no unnecessary overhead.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Safety First</h3>
+                    <p>Built-in device verification and confirmation prompts to prevent accidental data loss.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Debian Ready</h3>
+                    <p>Install with a single dpkg command. No complex dependencies.</p>
+                </div>
+            </div>
+        </section>
 
-        <h2>Installation</h2>
-        <pre><code>wget https://github.com/ishan3299/linrufus/releases/download/v0.1.1/linrufus_0.1.1-1_amd64.deb
-sudo dpkg -i linrufus_0.1.1-1_amd64.deb</code></pre>
-
-        <h2>Usage</h2>
-        <pre><code># List devices
-sudo linrufus --list
-
-# Write an ISO (Linux or Windows)
-sudo linrufus --device /dev/sdX --image /path/to/image.iso</code></pre>
-
-        <div style="text-align: center; margin-top: 20px;">
-            <a href="https://github.com/ishan3299/linrufus" class="btn">View on GitHub</a>
-            <a href="https://github.com/ishan3299/linrufus/releases" class="btn">Download Releases</a>
-        </div>
+        <section class="code-section">
+            <h2>Quick Start</h2>
+            <div class="code-blocks">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span style="margin-left: auto;">Installation</span>
+                    </div>
+                    <div class="code-content">
+                        <span class="comment"># Download the latest release</span><br>
+                        <span class="command">wget</span>
+                        https://github.com/ishan3299/linrufus/releases/latest/download/linrufus.deb<br><br>
+                        <span class="comment"># Install</span><br>
+                        <span class="command">sudo dpkg</span> <span class="flag">-i</span> linrufus.deb
+                    </div>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span style="margin-left: auto;">Usage</span>
+                    </div>
+                    <div class="code-content">
+                        <span class="comment"># List available USB devices</span><br>
+                        <span class="command">sudo linrufus</span> <span class="flag">--list</span><br><br>
+                        <span class="comment"># Write an ISO to a device</span><br>
+                        <span class="command">sudo linrufus</span> <span class="flag">--device</span> /dev/sdX <span
+                            class="flag">--image</span> ./Win11.iso
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-    <footer style="text-align: center; padding: 20px; color: #777;">
-        <p>LinRufus is a fork of <a href="https://rufus.ie">Rufus</a> by Pete Batard. <br> Maintained by Ishan Patel.</p>
+
+    <footer>
+        <div class="container">
+            <p>LinRufus is an open-source fork of <a href="https://rufus.ie">Rufus</a> by Pete Batard.<br>Maintained by
+                <a href="https://github.com/ishan3299">Ishan Patel</a>. Licensed under GPLv3.</p>
+        </div>
     </footer>
 </body>
+
 </html>
