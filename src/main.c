@@ -3,6 +3,7 @@
 #include <getopt.h>
 #include "device.h"
 #include "writer.h"
+#include "windows_writer.h"
 
 #define VERSION "0.1.0"
 
@@ -94,11 +95,22 @@ int main(int argc, char *argv[]) {
         // Warning
         printf("WARNING: ALL DATA ON %s WILL BE DESTROYED.\n", device_path);
         
-        if (write_image_to_device(image_path, device_path, progress_bar) == 0) {
-            printf("\nSuccess!\n");
+        // Check for Windows ISO
+        if (is_windows_iso(image_path)) {
+            if (write_windows_iso(image_path, device_path) == 0) {
+                 printf("\nSuccess! (Windows Mode)\n");
+            } else {
+                 fprintf(stderr, "\nFailed to write Windows image.\n");
+                 return EXIT_FAILURE;
+            }
         } else {
-            fprintf(stderr, "\nFailed to write image.\n");
-            return EXIT_FAILURE;
+            // Standard dd mode
+            if (write_image_to_device(image_path, device_path, progress_bar) == 0) {
+                printf("\nSuccess!\n");
+            } else {
+                fprintf(stderr, "\nFailed to write image.\n");
+                return EXIT_FAILURE;
+            }
         }
     } else if (device_path || image_path) {
         fprintf(stderr, "Error: Both device (-d) and image (-i) must be specified.\n");

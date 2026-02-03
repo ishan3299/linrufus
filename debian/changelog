@@ -1,3 +1,11 @@
+linrufus (0.1.1-1) unstable; urgency=medium
+
+  * Added support for creating bootable Windows 10/11 USBs.
+  * Implemented WIM splitting for FAT32 compatibility using wimlib.
+  * Added safety checks and progress monitoring.
+
+ -- Ishan Patel <ishan.patel1998@gmail.com>  Tue, 03 Feb 2026 11:45:00 +0530
+
 linrufus (0.1.0-1) unstable; urgency=medium
 
   * Initial release of LinRufus for Linux.

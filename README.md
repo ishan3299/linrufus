@@ -6,11 +6,13 @@ While Rufus is originally a Windows-only tool, LinRufus aims to bring the same r
 > [!WARNING]
 > This is a **Linux-specific fork**. Please do not report issues encountered in LinRufus to the upstream Rufus repository unless you are certain the issue exists there as well.
 
-## Features (Planned)
-- **CLI Only**: Simple, scriptable command-line interface.
-- **Native Backend**: Uses `libudev` and standard Linux block device operations.
-- **Safe**: Includes checks to prevent overwriting system drives.
-- **Debian Packaging**: Easy installation via `.deb` packages.
+## Features
+- **Device Discovery**: Automatically lists connected USB mass storage devices.
+- **Bootable Drive Creation**:
+    - **Hybrid ISOs** (Linux/distros): Uses efficient bit-by-bit comparison and writing (`dd` style) with progress bars.
+    - **Windows ISOs** (10/11): Automatically detects Windows ISOs and uses `wimlib` to split large files (`install.wim`) to fit on a FAT32 partition, ensuring maximum UEFI compatibility without requiring specific NTFS drivers.
+- **Safety Checks**: Prompts for confirmation and verifies device attributes to prevent accidental data loss.
+- **Progress Monitoring**: Real-time progress bar with speed and ETA (v2 implementation).
 
 ## Installation
 ### From Source

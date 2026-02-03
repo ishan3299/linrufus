@@ -8,7 +8,7 @@ Homepage: https://github.com/ishan3299/linrufus
 
 Package: linrufus
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, wimtools, dosfstools, parted, rsync, coreutils
 Description: Linux-native Rufus USB formatting utility
  LinRufus is a Linux port of the popular Rufus utility.
  It allows users to create bootable USB drives from ISO images
